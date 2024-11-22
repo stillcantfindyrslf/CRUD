@@ -1,10 +1,9 @@
-const indexRepository = require('../repository/indexRepository');
+const carRepository = require('../repository/carRepository');
 
-class IndexUseCase {
-    execute() {
-        const data = indexRepository.fetchData();
-        return { success: true, data };
+class carUseCase {
+    async getCarList() {
+        return await carRepository.getAllCars();
     }
 }
 
-module.exports = new IndexUseCase();
+module.exports = new carUseCase();
