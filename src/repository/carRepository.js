@@ -1,4 +1,4 @@
-const sequelize = require("../db");
+const sequelize = require("../../config/db");
 const CarModel = require('../../models/carModel')(sequelize);
 class CarRepository {
     async getAllCars() {

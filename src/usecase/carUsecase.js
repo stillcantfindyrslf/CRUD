@@ -1,9 +1,9 @@
 const carRepository = require('../repository/carRepository');
 
-class carUseCase {
+class carUsecase {
     async getCarList() {
         return await carRepository.getAllCars();
     }
 }
 
-module.exports = new carUseCase();
+module.exports = new carUsecase();
