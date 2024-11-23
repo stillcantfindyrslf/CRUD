@@ -1,4 +1,5 @@
 const orderUsecase = require('../usecase/orderUsecase');
+const CheckOrderStatusUsecase = require('../usecase/checkOrderStatusUsecase');
 const orderRepository = require('../repository/orderRepository');
 
 class OrderController {
@@ -17,6 +18,16 @@ class OrderController {
             res.status(200).json({ orders });
         } catch (error) {
             res.status(500).json({ error: 'Failed to fetch orders' });
+        }
+    }
+
+    async checkStatus(req, res) {
+        try {
+            const { orderId } = req.params;
+            const status = await CheckOrderStatusUsecase.execute(orderId);
+            res.status(200).json({ status });
+        } catch (error) {
+            res.status(404).json({ error: error.message });
         }
     }
 }

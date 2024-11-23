@@ -1,5 +1,5 @@
-const sequelize = require("../../config/db");
-const Order = require('../../models/orderModel')(sequelize);
+const sequelize = require("../config/db");
+const Order = require('../models/orderModel')(sequelize);
 
 class OrderRepository {
     async createOrder(orderData) {
@@ -7,6 +7,9 @@ class OrderRepository {
     }
     async getAllOrders() {
         return await Order.findAll();
+    }
+    async getStatusById(orderId) {
+        return await Order.findByPk(orderId);
     }
 }
 
