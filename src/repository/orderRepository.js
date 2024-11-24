@@ -11,6 +11,16 @@ class OrderRepository {
     async getStatusById(orderId) {
         return await Order.findByPk(orderId);
     }
+    async changeStatus(orderId, status) {
+        const order = await this.getStatusById(orderId);
+
+        if (!order) {
+            return null;
+        }
+
+        order.status = status;
+        return await order.save();
+    }
 }
 
 module.exports = new OrderRepository();

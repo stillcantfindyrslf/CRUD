@@ -1,5 +1,6 @@
 const orderUsecase = require('../usecase/orderUsecase');
 const CheckOrderStatusUsecase = require('../usecase/checkOrderStatusUsecase');
+const ChangeOrderStatusUsecase = require('../usecase/changeOrderStatusUsecase');
 const orderRepository = require('../repository/orderRepository');
 
 class OrderController {
@@ -28,6 +29,17 @@ class OrderController {
             res.status(200).json({ status });
         } catch (error) {
             res.status(404).json({ error: error.message });
+        }
+    }
+    async changeStatus(req, res) {
+        try {
+            const { orderId } = req.params;
+            const { status } = req.body;
+
+            const changeStatus = await ChangeOrderStatusUsecase.execute(orderId, status);
+            res.status(200).json({ message: 'Order status changed successfully', changeStatus});
+        } catch (error) {
+            res.status(400).json({ error: error.message });
         }
     }
 }
