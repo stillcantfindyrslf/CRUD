@@ -8,17 +8,30 @@ class OrderRepository {
     async getAllOrders() {
         return await Order.findAll();
     }
-    async getStatusById(orderId) {
+    async getOrderById(orderId) {
         return await Order.findByPk(orderId);
     }
     async changeStatus(orderId, status) {
-        const order = await this.getStatusById(orderId);
+        const order = await this.getOrderById(orderId);
 
         if (!order) {
             return null;
         }
 
         order.status = status;
+        return await order.save();
+    }
+    async cancelOrder(orderId) {
+        const order = await this.getOrderById(orderId);
+
+        if(!order) {
+            return null;
+        }
+
+        if (order.status === 'cancelled') {
+            throw new Error('Order is already cancelled');
+        }
+        order.status = 'cancelled';
         return await order.save();
     }
 }

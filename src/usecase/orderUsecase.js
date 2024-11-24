@@ -10,7 +10,7 @@ const orderSchema = Joi.object({
         .max(100)
         .required(),
     status: Joi.string()
-        .valid('created', 'in_transit', 'delivered')
+        .valid('created', 'in_transit', 'delivered', 'cancelled')
         .default('created'),
 });
 
