@@ -28,6 +28,15 @@ class CarRepository {
     async createCar(carData) {
         return await CarModel.create(carData);
     }
+
+    async updateCar(id, updateData) {
+        const car = await CarModel.findByPk(id);
+        if (!car) {
+            throw new Error(`Car with ID ${id} not found`);
+        }
+
+        return await car.update(updateData);
+    }
 }
 
 module.exports = new CarRepository();

@@ -29,6 +29,14 @@ const resolvers = {
             const newCar = await CarRepository.createCar(input);
             return newCar;
         },
+
+        async updateAuto(_, { id, input }) {
+            const updatedCar = await CarRepository.updateCar(id, input);
+            if (!updatedCar) {
+                throw new Error(`Failed to update car with ID ${id}`);
+            }
+            return updatedCar;
+        }
     },
 };
 
