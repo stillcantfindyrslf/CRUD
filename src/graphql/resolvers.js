@@ -22,6 +22,14 @@ const resolvers = {
 
             return car;
         },
+
+        async getCarSalesCount(_,  { modelName }) {
+            const totalSales = await CarRepository.getSalesCountByModel(modelName);
+            return {
+                modelName,
+                totalSales
+            };
+        }
     },
 
     Mutation: {

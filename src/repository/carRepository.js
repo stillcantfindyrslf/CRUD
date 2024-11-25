@@ -46,6 +46,15 @@ class CarRepository {
 
         return await car.destroy();
     }
+
+    async getSalesCountByModel(modelName) {
+        const totalSales = await CarModel.sum('purchaseCount', {
+            where: {
+                modelName: { [Op.eq]: modelName },
+            },
+        });
+        return totalSales || 0;
+    }
 }
 
 module.exports = new CarRepository();
