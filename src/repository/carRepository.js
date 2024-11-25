@@ -24,6 +24,10 @@ class CarRepository {
     async getCarById(id) {
         return await CarModel.findByPk(id);
     }
+
+    async createCar(carData) {
+        return await CarModel.create(carData);
+    }
 }
 
 module.exports = new CarRepository();

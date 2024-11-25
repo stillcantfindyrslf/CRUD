@@ -19,10 +19,22 @@ const typeDefs = gql`
     ASC
     DESC
   }
+  
+  input CreateCarInput {
+    brandName: String!
+    modelName: String!
+    fuelType: String!
+    bodyType: String!
+    purchaseCount: Int
+  }
 
   type Query {
     getCars(filter: CarFilter, sortBy: String, sortOrder: SortOrder): [CarModel!]!
     getCarById(id: Int!): CarModel
+  }
+  
+  type Mutation {
+    createAuto(input: CreateCarInput!): CarModel!
   }
 `;
 

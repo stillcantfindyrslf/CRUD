@@ -22,7 +22,14 @@ const resolvers = {
 
             return car;
         },
-    }
+    },
+
+    Mutation: {
+        async createAuto(_, { input }) {
+            const newCar = await CarRepository.createCar(input);
+            return newCar;
+        },
+    },
 };
 
 module.exports = resolvers;
