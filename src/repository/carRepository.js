@@ -1,6 +1,7 @@
 const sequelize = require("../config/db");
 const {Op} = require("sequelize");
 const CarModel = require('../models/carModel')(sequelize);
+
 class CarRepository {
     async getAllCars() {
         return await CarModel.findAll();
@@ -18,6 +19,10 @@ class CarRepository {
         const order = [[sortBy, sortOrder]];
 
         return await CarModel.findAll({ where, order });
+    }
+
+    async getCarById(id) {
+        return await CarModel.findByPk(id);
     }
 }
 

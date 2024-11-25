@@ -22,6 +22,7 @@ const typeDefs = gql`
 
   type Query {
     getCars(filter: CarFilter, sortBy: String, sortOrder: SortOrder): [CarModel!]!
+    getCarById(id: Int!): CarModel
   }
 `;
 
