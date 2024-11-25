@@ -44,6 +44,7 @@ const typeDefs = gql`
   type Mutation {
     createAuto(input: CreateCarInput!): CarModel!
     updateAuto(id: Int!, input: UpdateCarInput!): CarModel!
+    deleteAuto(id: Int!): Boolean!
   }
 `;
 

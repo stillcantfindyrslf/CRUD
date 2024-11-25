@@ -37,6 +37,15 @@ class CarRepository {
 
         return await car.update(updateData);
     }
+
+    async deleteCar(id) {
+        const car = await CarModel.findByPk(id);
+        if (!car) {
+            return false;
+        }
+
+        return await car.destroy();
+    }
 }
 
 module.exports = new CarRepository();

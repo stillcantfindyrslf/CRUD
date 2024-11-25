@@ -36,7 +36,16 @@ const resolvers = {
                 throw new Error(`Failed to update car with ID ${id}`);
             }
             return updatedCar;
-        }
+        },
+
+        async deleteAuto(_,  { id }) {
+            const success = await CarRepository.deleteCar(id);
+            if (!success) {
+                throw new Error(`Failed to delete car with ID ${id}`);
+            }
+
+            return true;
+        },
     },
 };
 
