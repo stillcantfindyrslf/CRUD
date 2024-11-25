@@ -9,9 +9,19 @@ const typeDefs = gql`
     bodyType: String!
     purchaseCount: Int!
   }
+  
+  input CarFilter {
+    brandName: String
+    modelName: String
+  }
+  
+  enum SortOrder {
+    ASC
+    DESC
+  }
 
   type Query {
-    getCars: [CarModel!]!
+    getCars(filter: CarFilter, sortBy: String, sortOrder: SortOrder): [CarModel!]!
   }
 `;
 
