@@ -3,6 +3,7 @@ const logger = require('./utils/logger');
 const orderRoutes = require('./routes/orderRoutes');
 const carRoutes = require('./routes/carRoutes');
 const dotenv = require('dotenv');
+const startApolloServer = require('./graphql/server');
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,8 @@ app.use(
     orderRoutes,
     carRoutes
 );
+
+startApolloServer(app);
 
 app.use((err, req, res, next) => {
     logger(`Error: ${err.message}`);
